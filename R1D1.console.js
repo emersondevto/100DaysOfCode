@@ -24,3 +24,4 @@ console.log("Hello World");
 
 //con el identificador de inicio de detiene el cronometro y muestra el tiempo tatal que tomo correr el codigo en elmedio.
 console.timeEnd("hello");
+console.clear();
