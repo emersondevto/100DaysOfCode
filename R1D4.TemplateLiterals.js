@@ -34,7 +34,6 @@ html = `
   <li>Expresiones: ${2 + 2}</li>
   <li>Functions: ${hello()}</li>
   <li>${age > 30 ? " mayor a 30" : "menor a 30"}</li>
-  <li></li>
 </ul>
 `;
 
