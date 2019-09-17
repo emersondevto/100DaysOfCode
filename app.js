@@ -10,7 +10,8 @@ try {
   // import("./R1D5.ObjectLiterals.js");
   // import("./R1D6.DatesAndTimes.js");
   // import("./R1D6.IfStatementsAndComparisonOperators.js");
-  import("./R1D7.Switches.js");
+  // import("./R1D7.Switches.js");
+  import("./R1D7.FunctionDeclarationsAndExpressions.js");
 } catch (error) {
   console.error(error.message);
 }
