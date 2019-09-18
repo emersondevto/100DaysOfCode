@@ -82,3 +82,5 @@ todo.delete = function(id) {
 todo.add();
 todo.edit(22);
 todo.delete(22);
+
+// FUNCTIONS EXPRESSIONS, PROPERTY METHODS, IMMIDIATLEY INVOKABLE FUNCTIONS EXPRESSIONS IIFEs, ARROW FUNCTIONS
