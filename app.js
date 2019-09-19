@@ -13,7 +13,8 @@ try {
   // import("./R1D7.Switches.js");
   // import("./R1D7.FunctionDeclarationsAndExpressions.js");
   // import("./R1D7.GeneralLoops.js");
-  import("./R1D8.ALookattheWindowObject.js");
+  // import("./R1D8.ALookattheWindowObject.js");
+  import("./R1D8.BlockScopeWith_letANDconst.js");
 } catch (error) {
   console.error(error.message);
 }
