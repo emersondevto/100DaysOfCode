@@ -8,7 +8,8 @@ try {
   // import("./R1D13.RemovingAndReplacingElements.js");
   // import("./R1D13.EventListenersAndtheEventObject.js");
   // import("./R1D13.MouseEvents.js");
-  import("./R1D14.KeyboardAndInputEvents.js");
+  // import("./R1D14.KeyboardAndInputEvents.js");
+  import("./R1D14.EventBubblingAndDelegation.js");
 } catch (error) {
   console.error(error.message);
 }
