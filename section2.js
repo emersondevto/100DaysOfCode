@@ -9,7 +9,8 @@ try {
   // import("./R1D13.EventListenersAndtheEventObject.js");
   // import("./R1D13.MouseEvents.js");
   // import("./R1D14.KeyboardAndInputEvents.js");
-  import("./R1D14.EventBubblingAndDelegation.js");
+  // import("./R1D14.EventBubblingAndDelegation.js");
+  import("./R1D14.LocalAndSessionStorage.js");
 } catch (error) {
   console.error(error.message);
 }
