@@ -12,7 +12,6 @@ try {
   // import("./R1D14.KeyboardAndInputEvents.js");
   // import("./R1D14.EventBubblingAndDelegation.js");
   // import("./R1D14.LocalAndSessionStorage.js");
-  import("./R1D20.ConstructorsAndThethisKeyword.js");
 } catch (error) {
   console.error(error.message);
 }
