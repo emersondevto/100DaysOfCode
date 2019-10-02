@@ -53,3 +53,4 @@ console.log(mary.hasOwnProperty("name2"));
 console.log(mary.hasOwnProperty("getsMarried")); // No es una propiedad, esta en el prototype
 
 // Desde chromebook
+// QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
