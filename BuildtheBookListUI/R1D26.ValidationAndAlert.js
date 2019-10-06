@@ -1,0 +1,105 @@
+console.log("Build the Book List UI ..");
+
+// Book constructor
+
+function Book(title, author, isbn) {
+  this.title = title;
+  this.author = author;
+  this.isbn = isbn;
+}
+
+// UI constructor
+
+function UI() {}
+
+// create col
+
+function newColValue(value) {
+  const newCol = document.createElement("td");
+  typeof value !== "undefined" &&
+    newCol.appendChild(document.createTextNode(value));
+  return newCol;
+}
+
+// Create a prototype add book to list
+UI.prototype.addBookToList = function(book) {
+  const list = document.getElementById("book-list");
+  // create a table row
+  const row = document.createElement("tr");
+  // insert columns
+
+  row.appendChild(newColValue(book.title));
+  row.appendChild(newColValue(book.author));
+  row.appendChild(newColValue(book.isbn));
+  const deleteButton = newColValue();
+  deleteButton.appendChild(document.createElement("a"));
+  deleteButton.firstChild.className = "delete";
+  deleteButton.firstChild.appendChild(document.createTextNode("X"));
+  row.appendChild(deleteButton);
+
+  list.appendChild(row);
+
+  console.log(row);
+};
+
+UI.prototype.clearFields = function() {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("isbn").value = "";
+};
+
+// show alert
+UI.prototype.showAlert = function(message, className) {
+  // Create div
+  const div = document.createElement("div");
+  //Add className
+  div.className = `alert ${className}`;
+  // Add text
+  div.appendChild(document.createTextNode(message));
+  // Get parent
+  const container = document.querySelector(".container");
+  // Get form
+  const form = document.querySelector("#book-form");
+  // Insertar alerta
+  container.insertBefore(div, form);
+  // remueve la alerta luego de 5 segundos
+  setTimeout(() => {
+    // div.remove();
+    document.querySelector(".alert").remove();
+  }, 5000);
+  // div.remove();
+};
+
+// Event liseners
+document.getElementById("book-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  // Get form values
+  const title = document.getElementById("title").value,
+    author = document.getElementById("author").value,
+    isbn = document.getElementById("isbn").value;
+
+  // Instanciando un objeto libro
+  const book = new Book(title, author, isbn);
+
+  // Instanciando un objeto UI
+  const ui = new UI();
+
+  // validate
+  if (title === "" || author === "" || isbn === "") {
+    // console.log(alert("Faltan campos"));
+    // Error alert
+    ui.showAlert("Porfavor llenar todos los campos", "error");
+  } else {
+    // Add book to list
+    ui.addBookToList(book);
+
+    // show success
+    ui.showAlert("Libro agregado", "success");
+
+    // Clear Fields
+    ui.clearFields();
+  }
+
+  // console.log(book);
+  // console.log(e);
+});
