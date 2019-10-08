@@ -94,6 +94,8 @@ document.getElementById("book-form").addEventListener("submit", function(e) {
   // Instanciando un objeto UI
   const ui = new UI();
 
+  console.log(ui);
+
   // validate
   if (title === "" || author === "" || isbn === "") {
     // console.log(alert("Faltan campos"));
