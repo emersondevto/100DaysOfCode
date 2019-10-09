@@ -16,8 +16,7 @@ function UI() {}
 
 function newColValue(value) {
   const newCol = document.createElement("td");
-  typeof value !== "undefined" &&
-    newCol.appendChild(document.createTextNode(value));
+  typeof value !== "undefined" && newCol.appendChild(document.createTextNode(value));
   return newCol;
 }
 
