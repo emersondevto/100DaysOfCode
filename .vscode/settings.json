@@ -1,6 +1,6 @@
 {
-  "editor.fontSize": 18,
-  "editor.rulers": [80, 120],
+  "editor.fontSize": 20,
+  "editor.rulers": [50, 60, 80],
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#ff4081"
   },

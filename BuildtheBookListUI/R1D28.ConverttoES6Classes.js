@@ -8,8 +8,7 @@ class Book {
 
 function newColValue(value) {
   const newCol = document.createElement("td");
-  typeof value !== "undefined" &&
-    newCol.appendChild(document.createTextNode(value));
+  typeof value !== "undefined" && newCol.appendChild(document.createTextNode(value));
   return newCol;
 }
 
@@ -28,6 +27,8 @@ class UI {
     const deleteButton = newColValue();
     deleteButton.appendChild(document.createElement("a"));
     deleteButton.firstChild.className = "delete";
+    deleteButton.firstChild.href = "#";
+
     deleteButton.firstChild.appendChild(document.createTextNode("X"));
     row.appendChild(deleteButton);
 
