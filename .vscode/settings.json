@@ -4,5 +4,11 @@
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#ff4081"
   },
-  "editor.codeLens": true
+  "editor.codeLens": true,
+  // Set the default
+  "editor.formatOnSave": false,
+  // Enable per-language
+  "[javascript]": {
+    "editor.formatOnSave": true
+  }
 }
