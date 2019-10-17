@@ -18,5 +18,19 @@ easyHTTP.prototype.get = function(url, callback) {
 };
 
 // Make an http post request
+
+easyHTTP.property.post = function (url,data,callback) {
+  this.http.open("POST", url, true)
+  
+  this.http.setRequestHeader('Content-type','application/json')
+  
+  let self = this;
+  this.http.onload = function() {
+      callback(null, self.http.responseText);
+  };
+  
+  this.http.send(JSON.stringify(data))
+}
+
 // Make an http put request
 // Make an http delete request
