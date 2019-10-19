@@ -9,40 +9,21 @@ const posts = [
   }
 ];
 
-//// Syncronous way
+//// Asyncronous way using promise
 
-// function createPost(post) {
-//   setTimeout(() => {
-//     posts.push(post);
-//   }, 2000);
-// }
-
-// function getPost() {
-//   setTimeout(() => {
-//     let output = "";
-//     posts.forEach(post => {
-//       output += `
-//       <li>${post.title}</li>
-//       `;
-//     });
-//     document.body.innerHTML = output;
-//   }, 1000);
-// }
-
-// createPost({
-//   title: "post 3",
-//   body: "This is Post 3"
-// });
-
-// getPost();
-
-//// Asyncronous way using callbacks
-
-function createPost(post, callback) {
-  setTimeout(() => {
-    posts.push(post);
-    callback();
-  }, 2000);
+function createPost(post) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(() => {
+      posts.push(post);
+      // mimic an error
+      const error = false;
+      if (error) {
+        reject("This is a mimic error");
+      } else {
+        resolve();
+      }
+    }, 2000);
+  });
 }
 
 function getPost() {
@@ -57,10 +38,13 @@ function getPost() {
   }, 1000);
 }
 
-createPost(
-  {
-    title: "post 3",
-    body: "This is Post 3"
-  },
-  getPost
-);
+function printError(error) {
+  console.log(error);
+}
+
+createPost({
+  title: "post 3",
+  body: "This is Post 3"
+})
+  .then(getPost)
+  .catch(printError);
