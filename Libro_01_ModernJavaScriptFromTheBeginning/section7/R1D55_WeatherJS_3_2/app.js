@@ -1,5 +1,9 @@
-const weather = new Weather("bogota", "Colombia");
 const ui = new UI();
+const storage = new Storage();
+
+const weatherLocation = storage.getLocationData();
+
+const weather = new Weather(weatherLocation.city, weatherLocation.country);
 
 function getCurrentTime() {
   weather
@@ -14,6 +18,9 @@ function changeLocation(e) {
   const city = document.getElementById("city").value;
   const country = document.getElementById("country").value;
   weather.changeLocation(city, country);
+
+  // set location in Local Storage
+  storage.setLocationData(city, country);
 
   //Get and display weather current time
   getCurrentTime();
