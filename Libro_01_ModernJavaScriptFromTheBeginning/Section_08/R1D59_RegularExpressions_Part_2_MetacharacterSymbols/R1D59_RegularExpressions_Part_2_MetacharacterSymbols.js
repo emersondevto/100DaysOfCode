@@ -21,6 +21,9 @@ re = /gre?a?y/i; // ? optional characters
 re = /gre?a?y\?/i; // \ Escape characters
 let str = "gray?";
 
+re = /h*llo world/; // Match any character 0 or more
+str = "heello world?";
+
 // String to match
 // let str = "Hello world";
 
