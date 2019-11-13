@@ -2,7 +2,7 @@ console.log("R1D62_ProfileScroller_IteratorMiniProject");
 
 const data = [
   {
-    name: "John Doe",
+    name: "John Doe2",
     age: 32,
     gender: "male",
     lookingFor: "famale",
@@ -38,7 +38,9 @@ const data = [
 const profiles = profileIterator(data);
 // Call first profile
 nextProfile();
-const nextEvent = document.getElementById("next").addEventListener("click", nextProfile);
+const nextEvent = document
+  .getElementById("next")
+  .addEventListener("click", nextProfile);
 
 function profileIterator(profiles) {
   let nextIndex = 0;

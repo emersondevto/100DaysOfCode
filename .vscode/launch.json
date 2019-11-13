@@ -23,7 +23,9 @@
     {
       "name": "Attach",
       "type": "firefox",
-      "request": "attach"
+      "request": "attach",
+      "url": "http://127.0.0.1:5500/",
+      "webRoot": "${workspaceFolder}"
     },
     {
       "name": "Launch WebExtension",
