@@ -59,3 +59,37 @@ obj1.KEY5 = function() {
 };
 
 obj1.KEY5();
+
+let KEYA = Symbol("Mundo");
+let KEYB = Symbol("KEYB");
+
+class TestSymbol {
+  constructor(hola) {
+    this[KEYA] = hola;
+    this.keya = hola;
+  }
+
+  [KEYB]() {
+    return "KEYB";
+  }
+
+  keyc() {
+    return this[KEYB]();
+  }
+}
+
+const ts1 = new TestSymbol("Mundo");
+console.log(ts1);
+console.log(JSON.stringify(ts1));
+console.log(ts1.keyc());
+
+// class Something {
+//   #property;
+
+//   constructor() {
+//     this.#property = "test";
+//   }
+// }
+
+// const instance = new Something();
+// console.log(instance.property); //=> undefined
