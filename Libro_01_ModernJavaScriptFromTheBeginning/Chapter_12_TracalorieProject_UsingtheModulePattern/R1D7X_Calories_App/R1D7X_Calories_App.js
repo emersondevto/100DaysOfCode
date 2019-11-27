@@ -35,6 +35,24 @@ const ItemController = (function() {
 
   // Public Methods
   return {
+    updateItem: function({ name, calories }) {
+      calories = parseInt(calories);
+      // data.currentItem.name = name;
+      // data.currentItem.calories = calories;
+
+      let found = null;
+      data.items.find(element => {
+        if (element.id === data.currentItem.id) {
+          element.name = name;
+          element.calories = calories;
+          found = element;
+          return true;
+        }
+      });
+      // return data.currentItem;
+
+      return found;
+    },
     getCurrentItem: function() {
       return data.currentItem;
     },
@@ -83,6 +101,8 @@ const ItemController = (function() {
 // UI Controller
 const UIController = (function() {
   // console.log("UI Controller");
+  const DOM = {};
+
   const UISelectors = {
     itemList: "#item-list",
     itemName: "#item-name",
@@ -97,6 +117,13 @@ const UIController = (function() {
 
   // Public Methods
   return {
+    setDOMCurrentItem: function(item) {
+      DOM.currentItem = item;
+    },
+    updateListItem: function(item) {
+      const newLi = UIController.buildItem(item);
+      document.querySelector(UISelectors.itemList).replaceChild(newLi, DOM.currentItem);
+    },
     addItemToForm: function() {
       const currentItem = ItemController.getCurrentItem();
       document.querySelector(UISelectors.itemName).value = currentItem.name;
@@ -152,7 +179,7 @@ const UIController = (function() {
     // test: function() {
     //   console.log("This is a test");
     // },
-    addListItem: function(item) {
+    buildItem: function(item) {
       // Show the list
       document.querySelector(UISelectors.itemList).style.display = "block";
       // this.test();
@@ -169,6 +196,10 @@ const UIController = (function() {
             <i class="edit-item fa fa-pencil"></i>
         </a>
       `;
+      return li;
+    },
+    insertItem: function(item) {
+      const li = UIController.buildItem(item);
       // Insert item
       document.querySelector(UISelectors.itemList).insertAdjacentElement("beforeend", li);
     }
@@ -186,6 +217,14 @@ const AppController = (function(ItemController, UIController) {
     // Add item event
     document.querySelector(UISelectors.addBtn).addEventListener("click", itemAddSubmit);
 
+    // Disable submit on enter
+    document.addEventListener("keypress", function(e) {
+      if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
     // CLick edit  item
     document.querySelector(UISelectors.itemList).addEventListener("click", itemEditClick);
 
@@ -195,6 +234,22 @@ const AppController = (function(ItemController, UIController) {
 
   // Update Item event
   const itemUpdateSubmit = function(e) {
+    // Get item input
+    const input = UIController.getItemInput();
+
+    // Update item
+    const updatedItem = ItemController.updateItem(input);
+
+    // Update UI
+    UIController.updateListItem(updatedItem);
+
+    // Get total calories
+    const totalCalories = ItemController.getTotalCalories();
+
+    // Add Total Calories to the UI
+    UIController.showTotalCalories(totalCalories);
+
+    UIController.clearEditState();
     e.preventDefault();
   };
 
@@ -202,7 +257,9 @@ const AppController = (function(ItemController, UIController) {
   const itemEditClick = function(e) {
     if (e.target.classList.contains("edit-item")) {
       // get list item id (item-0, item-1)
-      const itemId = e.target.parentNode.parentNode.id;
+      const itemDOMElement = e.target.parentNode.parentNode;
+      const itemId = itemDOMElement.id;
+      UIController.setDOMCurrentItem(itemDOMElement);
 
       // break into an array
       const listIdArray = itemId.split("-");
@@ -231,7 +288,7 @@ const AppController = (function(ItemController, UIController) {
       // add item
       const newItem = ItemController.addItem(input);
       // Add item to ui list
-      UIController.addListItem(newItem);
+      UIController.insertItem(newItem);
 
       // Get total calories
       const totalCalories = ItemController.getTotalCalories();
