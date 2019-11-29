@@ -35,6 +35,13 @@ const ItemController = (function() {
 
   // Public Methods
   return {
+    clearAllItems: function() {
+      data.items = [];
+    },
+    deleteItem: function(item) {
+      const indexOfItem = data.items.indexOf(item);
+      data.items.splice(indexOfItem, 1);
+    },
     updateItem: function({ name, calories }) {
       calories = parseInt(calories);
       // data.currentItem.name = name;
@@ -111,14 +118,21 @@ const UIController = (function() {
     deleteBtn: ".delete-btn",
     updateBtn: ".update-btn",
     backBtn: ".back-btn",
-    totalCalories: ".total-calories"
+    totalCalories: ".total-calories",
+    clearBtn: ".clear-btn"
   };
   const viewListCalories = document.querySelector(UISelectors.itemList);
 
   // Public Methods
   return {
+    clearAllListItems: function() {
+      document.querySelector(UISelectors.itemList).innerHTML = "";
+    },
     setDOMCurrentItem: function(item) {
       DOM.currentItem = item;
+    },
+    getDOMCurrentItem: function() {
+      return DOM.currentItem;
     },
     updateListItem: function(item) {
       const newLi = UIController.buildItem(item);
@@ -230,6 +244,55 @@ const AppController = (function(ItemController, UIController) {
 
     // Update Item event
     document.querySelector(UISelectors.updateBtn).addEventListener("click", itemUpdateSubmit);
+
+    document.querySelector(UISelectors.backBtn).addEventListener("click", e => {
+      UIController.clearEditState();
+      e.preventDefault();
+    });
+
+    // Delete item event
+    document.querySelector(UISelectors.deleteBtn).addEventListener("click", itemDeleteSubmit);
+
+    // Clear items event
+    document.querySelector(UISelectors.clearBtn).addEventListener("click", clearAllItemsClick);
+  };
+
+  const clearAllItemsClick = function(e) {
+    // Delete all items from Item Controller
+    ItemController.clearAllItems();
+    // Remove from the ui
+    UIController.clearAllListItems();
+
+    // Get total calories
+    const totalCalories = ItemController.getTotalCalories();
+
+    // Add Total Calories to the UI
+    UIController.showTotalCalories(totalCalories);
+
+    // Hide Ul
+    UIController.hideList();
+    e.preventDefault();
+  };
+
+  // Delete item event
+  const itemDeleteSubmit = function(e) {
+    // get current UI item
+    UIController.getDOMCurrentItem().remove();
+
+    // get current item
+    const currentItem = ItemController.getCurrentItem();
+
+    // delete item
+    ItemController.deleteItem(currentItem);
+
+    // Get total calories
+    const totalCalories = ItemController.getTotalCalories();
+
+    // Add Total Calories to the UI
+    UIController.showTotalCalories(totalCalories);
+
+    UIController.clearEditState();
+    e.preventDefault();
   };
 
   // Update Item event
