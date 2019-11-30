@@ -1,5 +1,46 @@
 console.log("R1D77_WorkingWith_EditState");
 // Storage Controller
+const StorageController = (function(){
+  console.log('Storage Controller')
+  
+  // Public methods
+  return{
+      storeItem:function(item){
+        let items = []
+        // check if is any item in ls
+        if(localStorage.getItem('items') === null)
+        {
+          items = []
+          // push new item 
+          items.push(item)
+          // set localstorage 
+          localStorage.setItem('items',JSON.stringify(items))
+        }
+        else {
+          // get items from localstorage
+          items = JSON.parse(localStorage.getItem('items'));
+          // push new item
+          items.push(item)
+          // set localstorage 
+          localStorage.setItem('items',JSON.stringify(items))
+          
+        }
+        
+        console.log(item)
+      },
+      getItemsFromStorage:function(){
+        let items ;
+        if(localStorage.getItem('items') === null)
+        {
+          items = []
+        } else {
+          items = JSON.parse(localStorage.getItem('items'));
+        }
+        console.log(items)
+        return items;
+      }
+  }
+})()
 
 // Item Controller
 const ItemController = (function() {
@@ -35,6 +76,9 @@ const ItemController = (function() {
 
   // Public Methods
   return {
+    setItems: function(items){
+      data.items = items
+    },
     clearAllItems: function() {
       data.items = [];
     },
@@ -221,7 +265,7 @@ const UIController = (function() {
 })();
 
 // App Controller
-const AppController = (function(ItemController, UIController) {
+const AppController = (function(ItemController, StorageController, UIController) {
   // console.log(ItemController.logData());
   // Load event listeners
   const loadEventListeners = function() {
@@ -358,6 +402,9 @@ const AppController = (function(ItemController, UIController) {
 
       // Add Total Calories to the UI
       UIController.showTotalCalories(totalCalories);
+      
+      // Store in local storage 
+      StorageController.storeItem(newItem)
 
       // Clear Fields
       UIController.clearInputs();
@@ -375,6 +422,11 @@ const AppController = (function(ItemController, UIController) {
 
       // Clear edit state / set initial state
       UIController.clearEditState();
+      
+      // Load data from localstorage
+      let data = StorageController.getItemsFromStorage()
+      // set data loaded from localStorage
+      ItemController.setItems(data)
 
       // Fetch items from data structure
       const items = ItemController.getItems();
@@ -397,6 +449,6 @@ const AppController = (function(ItemController, UIController) {
       loadEventListeners();
     }
   };
-})(ItemController, UIController);
+})(ItemController, StorageController, UIController);
 
 AppController.init();
