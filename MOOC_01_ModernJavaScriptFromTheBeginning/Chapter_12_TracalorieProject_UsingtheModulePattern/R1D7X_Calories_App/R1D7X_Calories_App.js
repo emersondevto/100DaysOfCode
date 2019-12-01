@@ -5,6 +5,28 @@ const StorageController = (function(){
   
   // Public methods
   return{
+      clearItemsFromStorage: function(){
+        localStorage.removeItem('items')
+      },
+      deleteItemStorage:function(item){
+        let items = JSON.parse(localStorage.getItem('items'));
+        items.forEach((element, index) => {
+          if(element.id === item.id){
+            items.splice(index, 1)
+          }
+        })
+        localStorage.setItem('items',JSON.stringify(items))
+      },
+      updateItemStorage:function(item){
+        let items = JSON.parse(localStorage.getItem('items'));
+        items.forEach(element => {
+          if(element.id === item.id){
+            element.name = item.name;
+            element.calories = item.calories;
+          }
+        })
+        localStorage.setItem('items',JSON.stringify(items))
+      }, 
       storeItem:function(item){
         let items = []
         // check if is any item in ls
@@ -136,6 +158,8 @@ const ItemController = (function() {
       } else {
         id = 0;
       }
+      
+      console.log(id)
 
       // Calories to number
       calories = parseInt(calories);
@@ -208,7 +232,7 @@ const UIController = (function() {
       let html = "";
       items.forEach(function(item) {
         html += `
-        <li class="collection-item" id="item-0">
+        <li class="collection-item" id="item-${item.id}">
           <strong>${item.name}</strong> <em>${item.calories} Calories</em>
           <a href="#" class="secondary-content">
               <i class="edit-item fa fa-pencil"></i>
@@ -306,6 +330,9 @@ const AppController = (function(ItemController, StorageController, UIController)
     ItemController.clearAllItems();
     // Remove from the ui
     UIController.clearAllListItems();
+    
+    // remove all items from localstorage
+    StorageController.clearItemsFromStorage()
 
     // Get total calories
     const totalCalories = ItemController.getTotalCalories();
@@ -334,6 +361,9 @@ const AppController = (function(ItemController, StorageController, UIController)
 
     // Add Total Calories to the UI
     UIController.showTotalCalories(totalCalories);
+    
+    // Delete item from localstorage
+    StorageController.deleteItemStorage(currentItem)
 
     UIController.clearEditState();
     e.preventDefault();
@@ -356,6 +386,9 @@ const AppController = (function(ItemController, StorageController, UIController)
     // Add Total Calories to the UI
     UIController.showTotalCalories(totalCalories);
 
+    // Update item on localstorage
+    StorageController.updateItemStorage(updatedItem)
+
     UIController.clearEditState();
     e.preventDefault();
   };
@@ -377,6 +410,7 @@ const AppController = (function(ItemController, StorageController, UIController)
       // get item
       const itemToEdit = ItemController.getItemById(id);
 
+     
       // set current item
       ItemController.setCurrentItem(itemToEdit);
 
