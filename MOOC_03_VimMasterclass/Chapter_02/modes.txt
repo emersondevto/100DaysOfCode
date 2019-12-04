@@ -1,0 +1,10 @@
+En vim existen tres modos 
+
+- normal mode 
+	Es el modo inicial donde no es posible escribir nada en el archivo. 
+
+- insert mode 
+	Es el estado donde vim permite la edicion del documento. 
+
+- command-line mode
+	Es el modo donde se ingresan comandos ya sea para guardar o para mostrar la numeración de las lineas. 
