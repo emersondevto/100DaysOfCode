@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
       "name": "Launch index.html",
       "type": "firefox",
       "request": "launch",
@@ -28,11 +35,70 @@
       "webRoot": "${workspaceFolder}"
     },
     {
+      "type": "firefox",
+      "request": "attach",
+      "name": "Firefox Webpack",
+      "webRoot": "${workspaceFolder}",
+      "url": "http://localhost:8080",
+      "pathMappings": [
+        { "url": "webpack:///~/", "path": "${webRoot}/node_modules/" },
+        { "url": "webpack:///./~/", "path": "${webRoot}/node_modules/" },
+        { "url": "webpack:///./", "path": "${webRoot}/" },
+        { "url": "webpack:///src/", "path": "${webRoot}/src/" },
+        { "url": "webpack:///build/", "path": "${webRoot}/build/" },
+
+        { "url": "webpack:///node_modules/", "path": "${webRoot}/node_modules/" },
+        { "url": "webpack:///webpack", "path": null },
+        { "url": "webpack:///(webpack)", "path": null },
+        { "url": "webpack:///", "path": "" }
+      ]
+    },
+    {
       "name": "Launch WebExtension",
       "type": "firefox",
       "request": "launch",
       "reAttach": true,
       "addonPath": "${workspaceFolder}"
+    },
+
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chapter_13_Microposts",
+      "url": "http://localhost:5000",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/MOOC_01_ModernJavaScriptFromTheBeginning/Chapter_13_Microposts_Project_CRUD_Front_End_Webpack_Babel/babel_webpack_starter-master",
+      "disableNetworkCache": true,
+      "sourceMapPathOverrides": { "webpack:///./*": "${webRoot}/src/*" }
+    },
+    {
+      "type": "firefox",
+      "request": "attach",
+      "name": "FF_Chapter_13_Microposts",
+      "webRoot": "${workspaceFolder}/MOOC_01_ModernJavaScriptFromTheBeginning/Chapter_13_Microposts_Project_CRUD_Front_End_Webpack_Babel/babel_webpack_starter-master",
+      "url": "http://localhost:5000",
+      "pathMappings": [
+        { "url": "webpack:///", "path": "${webRoot}/src/" },
+      ]
     }
+    // {
+    //   "type": "chrome",
+    //   "request": "launch",
+    //   "name": "Launch Chrome TEST",
+    //   "url": "http://localhost:8080",
+    //   "port": 9222,
+    //   "webRoot": "${workspaceFolder}/MOOC_01_ModernJavaScriptFromTheBeginning/Chapter_13_Microposts_Project_CRUD_Front_End_Webpack_Babel/babel_webpack_starter-master/src",
+    //   "sourceMaps": true,
+
+    //   "disableNetworkCache": true,
+    //   // "webRoot": "${workspaceFolder}/src",
+    //   // "sourceMapPathOverrides": { "webpack:///./src/*": "${webRoot}/src/*" },
+    //   "sourceMapPathOverrides": {
+    //     "webpack:///*": "${webRoot}/../*",
+    //     "webpack:///./*": "${webRoot}/../*",
+    //     "webpack:///src/*": "${webRoot}/../src/*",
+    //     "webpack:///./~/*": "${webRoot}/../node_modules/*"
+    //   }
+    // }
   ]
 }

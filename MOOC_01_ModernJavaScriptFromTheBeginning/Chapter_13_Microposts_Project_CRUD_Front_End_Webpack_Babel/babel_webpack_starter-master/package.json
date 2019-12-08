@@ -6,18 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open='/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox --start-debugger-server' --hot",
-    "debug": "webpack-dev-server --output-public-path=/build/  --host localhost --mode development --config ./webpack.config.js",
+    "debug-chrome": "webpack-dev-server --host localhost --mode development --config ./webpack.config.js",
+    "debug-firefox": "webpack-dev-server --host localhost --mode development --config ./webpack.config.js",
     "build": "webpack --mode production --progress"
   },
   "author": "Brad Traversy",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.7.5",
     "@babel/polyfill": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.0.8",
+    "@babel/preset-env": "^7.7.6",
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.1.10"
   }
 }

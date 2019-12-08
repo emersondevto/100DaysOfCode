@@ -29,6 +29,12 @@ Compile and build
 $ npm run build
 ```
 
+### Debugger
+Firefox
+```sh
+ /Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox --start-debugger-server
+```
+
 ## More Info
 
 ### Author
