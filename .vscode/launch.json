@@ -77,9 +77,7 @@
       "name": "FF_Chapter_13_Microposts",
       "webRoot": "${workspaceFolder}/MOOC_01_ModernJavaScriptFromTheBeginning/Chapter_13_Microposts_Project_CRUD_Front_End_Webpack_Babel/babel_webpack_starter-master",
       "url": "http://localhost:5000",
-      "pathMappings": [
-        { "url": "webpack:///", "path": "${webRoot}/src/" },
-      ]
+      "pathMappings": [{ "url": "webpack:///", "path": "${webRoot}/src/" }]
     }
     // {
     //   "type": "chrome",

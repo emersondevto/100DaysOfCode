@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open='/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox --start-debugger-server' --hot",
     "debug-chrome": "webpack-dev-server --host localhost --mode development --config ./webpack.config.js",
-    "debug-firefox": "webpack-dev-server --host localhost --mode development --config ./webpack.config.js",
+    "debug-firefox": "webpack-dev-server --host localhost --mode development --open='/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox --start-debugger-server' --config ./webpack.config.js",
     "build": "webpack --mode production --progress"
   },
   "author": "Brad Traversy",
