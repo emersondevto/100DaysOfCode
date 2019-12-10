@@ -1,3 +1,5 @@
+import { Post } from "./post";
+
 class UI {
   constructor() {
     this.post = document.querySelector("#posts");
@@ -6,6 +8,44 @@ class UI {
     this.idInput = document.querySelector("#id");
     this.postSubmit = document.querySelector(".post-submit");
     this.forState = "add";
+  }
+
+  showAlert(message, className) {
+    this.clearAlert();
+
+    // create div
+    const div = document.createElement("div");
+    div.className = className;
+    // Add text
+    div.appendChild(document.createTextNode(message));
+    // get parent
+    const container = document.querySelector(".postContainer");
+    // Get Posts
+    const posts = document.querySelector("#posts");
+    // Insert alert div
+    container.insertBefore(div, posts);
+    // Timeout
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
+  clearFields() {
+    this.titleInput.value = "";
+    this.bodyInput.value = "";
+  }
+
+  getDataForm() {
+    let title = this.titleInput.value,
+      body = this.bodyInput.value;
+    return new Post(title, body);
   }
 
   showPosts(posts) {
