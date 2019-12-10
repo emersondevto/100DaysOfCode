@@ -7,8 +7,29 @@ document.addEventListener("DOMContentLoaded", getPosts);
 // Listen for add post
 document.querySelector(".post-submit").addEventListener("click", submitPost);
 
+// Listen for delete post
+document.querySelector("#posts").addEventListener("click", deletePost);
+
+// Listen for edit state
+// document.querySelector(#posts)
+
+// delete post
+function deletePost(e) {
+  if (e.target.parentElement.className.includes("delete")) {
+    let idPost = e.target.parentElement.attributes["data-id"].value;
+    let url = `http://localhost:3000/posts/${idPost}`;
+    http
+      .delete(url)
+      .then(msg => {
+        // console.log(msg);
+        getPosts();
+      })
+      .catch(err => console.error(err));
+  }
+}
+
 // Add Post
-function submitPost() {
+function submitPost(e) {
   // Extraer los datos del DOM Form
   const newPost = ui.getDataForm();
 
@@ -25,7 +46,7 @@ function submitPost() {
     .catch(err => console.error(err));
 }
 
-function getPosts() {
+function getPosts(e) {
   http
     .get("http://localhost:3000/posts")
     .then(data => ui.showPosts(data))
