@@ -17,7 +17,7 @@ module.exports = {
     // contentBase: path.resolve(__dirname, "build"),
     // writeToDisk: true,
     // inline: true,
-    port: 5000,
+    port: 8080,
     historyApiFallback: true,
     disableHostCheck: true
   },

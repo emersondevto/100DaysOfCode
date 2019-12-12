@@ -9,6 +9,12 @@ class UI {
     this.postSubmit = document.querySelector(".post-submit");
     this.forState = "add";
   }
+  
+  fillForm(post){
+    this.titleInput.value = post.title;
+    this.bodyInput.value = post.body;
+    this.idInput.value = post.id
+  }
 
   showAlert(message, className) {
     this.clearAlert();
