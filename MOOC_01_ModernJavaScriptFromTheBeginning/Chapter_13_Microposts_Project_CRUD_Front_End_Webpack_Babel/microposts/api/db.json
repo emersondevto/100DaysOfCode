@@ -1,9 +1,16 @@
 {
   "posts": [
     {
-      "title": "Post 2",
+      "title": "Post 2.5",
       "body": "Post 2",
+      "valid": true,
+      "isNew": false,
       "id": 2
+    },
+    {
+      "title": "Post1",
+      "body": "Post1 ",
+      "id": 3
     }
   ]
 }
