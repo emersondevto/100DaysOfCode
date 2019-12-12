@@ -4,6 +4,8 @@ To move down a line, press "j".
 
 To move up a line, press "k".
 
+testing
+
 To move to the right, press "l".
 
 To move to the left, press "h".
