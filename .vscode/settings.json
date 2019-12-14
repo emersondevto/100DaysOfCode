@@ -17,5 +17,6 @@
     "**/*.scss",
     "**/*.sass",
     "**/*.ts"
-  ]
+  ],
+  "cSpell.language": ",es"
 }
