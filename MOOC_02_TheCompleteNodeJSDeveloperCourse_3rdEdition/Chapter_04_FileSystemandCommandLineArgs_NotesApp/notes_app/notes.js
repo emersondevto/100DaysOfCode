@@ -12,6 +12,7 @@ const addNote = (title, body) => {
   // const duplicateNotes = notes.filter(note => note.title === title);
   const duplicateNote = notes.find(note => note.title === title);
 
+  // debugger
   // if (duplicateNotes.length === 0) {
   if (!duplicateNote) {
     notes.push({
@@ -51,7 +52,7 @@ const readNote = title => {
     console.log(chalk.inverse("Title: ", noteToPrint.title));
     console.log("Body: ", noteToPrint.body);
   } else {
-    console.log(chalk.red.inverse("Note not exist"));
+    console.log(chalk.red.inverse("Note not found"));
   }
 };
 
@@ -78,3 +79,5 @@ module.exports = {
   listNotes,
   readNote
 };
+
+// Testing
