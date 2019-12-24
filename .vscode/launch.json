@@ -12,6 +12,12 @@
       "webRoot": "${workspaceFolder}"
     },
     {
+      "name": "Attach to Process nodejs",
+      "type": "node",
+      "request": "attach",
+      "port": 9229
+    },
+    {
       "name": "Launch index.html",
       "type": "firefox",
       "request": "launch",
