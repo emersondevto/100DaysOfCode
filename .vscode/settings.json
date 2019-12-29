@@ -18,5 +18,8 @@
     "**/*.sass",
     "**/*.ts"
   ],
-  "cSpell.language": ",es"
+  "cSpell.language": ",es",
+  "cSpell.words": [
+    "síncrono"
+  ]
 }
