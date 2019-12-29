@@ -1,0 +1,48 @@
+const request = require("request");
+
+const geocode = (address, callback) => {
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?limit=1&access_token=pk.eyJ1IjoiZW1lcnNvbnZvbGtvdiIsImEiOiJjazRvM2M4MmczMnAxM2VydnNubjlkZXF6In0.ibf18jbSSvScuEMGkhT9yg`;
+
+  const options = {
+    json: true,
+    url
+  };
+
+  const response = (error, response) => {
+    if (error) {
+      callback({ msg: "No fue posible conectarse a mapbox" }, null);
+    } else if (response.body.features.length === 0) {
+      callback({ msg: "NO hay coincidencias" }, null);
+    } else {
+      features = response.body.features[0];
+      const geo = {
+        location: features.place_name,
+        latitud: features.center[0],
+        longitud: features.center[1]
+      };
+      callback(null, geo);
+    }
+  };
+
+  request(options, response);
+};
+
+module.exports = geocode;
+
+// const urlMapbox =
+//   "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?limit=1&access_token=pk.eyJ1IjoiZW1lcnNvbnZvbGtvdiIsImEiOiJjazRvM2M4MmczMnAxM2VydnNubjlkZXF6In0.ibf18jbSSvScuEMGkhT9yg";
+
+// const urlMapbox =
+//   "https://api.mapbox.com/geocoding/v5/mapbox.places/12what.json?limit=1&access_token=pk.eyJ1IjoiZW1lcnNvbnZvbGtvdiIsImEiOiJjazRvM2M4MmczMnAxM2VydnNubjlkZXF6In0.ibf18jbSSvScuEMGkhT9yg";
+
+// request({ url: urlMapbox, json: true }, (error, response) => {
+//   if (error) {
+//     console.log("No fue posible conectarse a mapbox");
+//   } else if (response.body.features.length === 0) {
+//     console.log("NO hay coincidencias");
+//   } else {
+//     const data = response.body;
+//     console.log("Latitud: ", data.features[0].center[0]);
+//     console.log("Longitud: ", data.features[0].center[1]);
+//   }
+// });
