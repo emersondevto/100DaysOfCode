@@ -12,14 +12,20 @@
 
 using namespace std;
 
-void hola (){
-    cout << "hola func";
+void numbers (){
+    
+    int array[] = {1,2,3,4,5,6};
+    cout << array[0] << endl;
 }
 
 int main(int argc, const char * argv[]) {
-    hola();
+    numbers();
+    string name;
     // insert code here...
-    cout << "Hello, World!\n";
-    std::cout << __cplusplus;
+    cout << "Hello, World!" << endl;
+//    cin >> name;
+    getline(cin, name);
+    std::cout << __cplusplus << endl;
+    cout << name << endl;
     return 0;
 }
