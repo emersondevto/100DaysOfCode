@@ -54,7 +54,9 @@ setTimeout(callback, 3000);
 ```
 
 ### Call stack
-Lugar donde se listan todos lo llamados a código para ser procesados. Call stack siempre inicia con main y main es importante dado que hasta que termine de procesar/llamar cada uno de los pedazos (chuncks) de códigos síncrono todo lo que sea asíncrono deberá esperar así allá terminado el tiempo como en el caso de setTimeout.
+Lugar donde se listan todos las subrutinas a ser ejecutadas/procesadas. Call stack siempre inicia con main y main es importante dado que hasta que termine de procesar/llamar cada uno de los pedazos (chuncks) de códigos síncrono todo lo que sea asíncrono deberá esperar así allá terminado el tiempo como en el caso de setTimeout.
 
 ### Event Loop
 Lugar donde se listan todos los pedazos (chuncks) de código asíncrono una terminada la llamada de codigo síncrono en el call stack. Los chuncks de código asíncrono salen de event loop a call stack para ser listado en el llamado.
+
+### Destructuring and Property Shorthand Challenge

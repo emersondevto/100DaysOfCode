@@ -8,17 +8,20 @@ const geocode = (address, callback) => {
     url
   };
 
-  const response = (error, response) => {
+  const response = (error, { body: { features } }) => {
     if (error) {
       callback({ msg: "No fue posible conectarse a mapbox" }, null);
-    } else if (response.body.features.length === 0) {
+    } else if (features.length === 0) {
       callback({ msg: "NO hay coincidencias" }, null);
     } else {
-      features = response.body.features[0];
+      const {
+        place_name: location,
+        center: [longitud, latitud]
+      } = features[0];
       const geo = {
-        location: features.place_name,
-        latitud: features.center[0],
-        longitud: features.center[1]
+        location,
+        latitud,
+        longitud
       };
       callback(null, geo);
     }

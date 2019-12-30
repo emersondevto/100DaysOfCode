@@ -13,14 +13,14 @@ const request = require("request");
 const forecast = (latitud, longitud, callback) => {
   const url = `https://api.darksky.net/forecast/accc9edacb83696bb5deb76c7ccd7e9f/${latitud},${longitud}?lang=es&units=si`;
 
-  const response = (error, response) => {
+  const response = (error, { body }) => {
     if (error) {
       callback({ msg: "Unable to connecto with weather service!" }, null);
-    } else if (response.body.error) {
+    } else if (body.error) {
       callback({ msg: "Unable to find location" }, null);
     } else {
-      const currently = response.body.currently;
-      const daily = response.body.daily.data[0];
+      const currently = body.currently;
+      const daily = body.daily.data[0];
 
       const data = {
         summary: daily.summary,
