@@ -9,6 +9,7 @@ const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // // Variables que provee nodejs
 // __dirname;
@@ -92,6 +93,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, c => {
+app.listen(port, c => {
   console.log("Running");
 });

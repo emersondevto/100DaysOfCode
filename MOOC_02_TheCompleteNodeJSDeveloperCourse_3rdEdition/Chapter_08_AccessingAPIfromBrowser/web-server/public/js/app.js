@@ -12,7 +12,7 @@ const msg1 = document.querySelector("#msg1");
 const msg2 = document.querySelector("#msg2");
 
 document.querySelector("form").addEventListener("submit", e => {
-  fetch(`http://localhost:3000/weather?address=${searchLocation.value}`).then(response => {
+  fetch(`/weather?address=${searchLocation.value}`).then(response => {
     response.json().then(data => {
       if (data.error) {
         msg1.textContent = data.error;

@@ -26,7 +26,13 @@ const forecast = (latitud, longitud, callback) => {
         summary: daily.summary,
         temperature: currently.temperature,
         precipProbability: currently.precipProbability,
-        msg: `${daily.summary} En este momento hay ${currently.temperature} grados afuera. Hay una probabilidad de ${currently.precipProbability}% de llover.`
+        msg: `${daily.summary} En este momento hay ${
+          currently.temperature
+        } grados afuera. Hay una probabilidad de ${currently.precipProbability}% de llover. ${
+          currently.precipProbability > 65
+            ? "Es mejor salir con sombrilla en mano"
+            : "NO es necesario llevar sombrilla."
+        }`
       };
 
       callback(null, data);
